@@ -29,10 +29,22 @@ const addBookToLibrary = (book) => {
 };
 addBookToLibrary(bookOne);
 
-console.log(myLibrary[2]);
+const modal = document.querySelector('.modal');
+const openModal = document.querySelector('.open-modal');
 
+openModal.addEventListener('click', () => {
+  console.log(`click`);
+  modal.style.display = 'block';
+});
+
+// const addBookToLibraryBtn = document.querySelector('.submit');
+// addBookToLibraryBtn.addEventListener('click', () => {
+//   card();
+// });
 const card = () => {
-  console.log(document.querySelector('.library'));
+  const library = document.querySelector('.library');
+  const createCard = document.createElement('div');
+  library.appendChild(createCard).classList.add('card');
 };
 
-card();
+// const addClassToCard = (())

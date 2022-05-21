@@ -24,6 +24,7 @@
       media="prefers-reduced-motion"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <section class="container">
@@ -31,7 +32,7 @@
         <h1>Library</h1>
       </header>
       <div>
-        <button class="submit">Add book</button>
+        <button class="open-modal">Add book</button>
       </div>
       <div class="library">
         <div class="card book--1">
@@ -48,5 +49,35 @@
       </div>
       <footer><h5>Made by Nico</h5></footer>
     </section>
+
+    <div class="modal">
+      <div class="modal-content">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="What is the title?"
+        />
+        <input
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Who wrote the book?"
+        />
+        <input
+          type="number"
+          name="pages"
+          id="pages"
+          placeholder="How many pages?"
+        />
+        <input
+          type="text"
+          name="readw"
+          id="readw"
+          placeholder="Have you read it?"
+        />
+        <button type="submit">Add book to library</button>
+      </div>
+    </div>
   </body>
 </html>
