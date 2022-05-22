@@ -22,11 +22,13 @@ openModal.addEventListener('click', () => {
 });
 let number;
 const elementH3 = document.createElement('h3');
+
 const elementH4 = document.createElement('h4');
 const elementH4_2 = document.createElement('h4');
 const elementButton = document.createElement('button');
 const elementImg = document.createElement(`img`);
 const library = document.querySelector('.library');
+
 let createCard = document.createElement('div');
 let card = () => {
   // const library = document.querySelector('.library');
@@ -72,8 +74,12 @@ const submitBook = document
       let createCard = document.createElement('div');
       library.appendChild(createCard).classList.add('card');
       createCard.setAttribute(`id`, `card--${i - 1}`);
-
-      document.getElementById(`card--${i - 1}`).appendChild(elementH3);
+      createCard.innerHTML = `<h3>${myLibrary[i - 1].title}</h3>
+                              <h4>${myLibrary[i - 1].author}</h4>
+                              <h4>${myLibrary[i - 1].pages}</h4>`;
+      // let newCard = document.querySelector('.card');
+      // newCard.appendChild(elementH3);
+      // document.getElementById(`card--${i - 1}`).appendChild(elementH3);
     }
     // card();
   });
