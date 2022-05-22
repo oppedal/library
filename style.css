@@ -60,6 +60,9 @@ header h1 {
 .card button {
   margin-bottom: 1rem;
 }
+.card img {
+  border-radius: 100px;
+}
 footer {
   position: sticky;
   grid-row: 4;
@@ -69,10 +72,10 @@ footer {
 }
 
 .modal {
-  display: none;
+  display: block;
   background-color: grey;
   height: 50vh;
-  width: 50vw;
+  max-width: fit-content;
   position: fixed;
   z-index: 100;
   top: 50%;
