@@ -201,7 +201,7 @@ input {
 input:focus {
   outline: 3px solid var(--accent);
 }
-@media screen and (max-width: 955px) {
+@media screen and (max-width: 1246px) {
   input {
     height: 2vh;
     font-size: 1rem;
