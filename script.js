@@ -17,12 +17,12 @@ const elementImg = document.createElement(`img`);
 const library = document.querySelector('.library');
 const btnRead = document.querySelector(`.card--read--${number}`);
 //Random number for images.//
-let randomNumber = (maxLimit = 10) => {
+let randomNumber = (maxLimit = 50) => {
   let rand = Math.random() * maxLimit;
   rand = Math.floor(rand);
   return rand;
 };
-
+//Book object.//
 function Book(title, author, pages, haveRead) {
   (this.title = title),
     (this.author = author),
@@ -34,18 +34,10 @@ openModal.addEventListener('click', () => {
   modal.style.display = 'block';
 });
 
-// let createCard = document.createElement('div');
-// let card = () => {
-//   for (let i = 0; i < myLibrary.length; i++) {
-//     let getCardById = document.getElementById(`card--${i}`);
-//     getCardById.appendChild(elementH3).classList.add(`card--title--${i}`);
-//   }
-// };
-
+//Buttons on the cards.//
 const getButtons = () => {
   const btnTarget = document.querySelectorAll('button');
   return btnTarget.forEach(function (button) {
-    // console.log(button);
     if (button.classList.contains('btn--card')) {
       button.addEventListener('click', (e) => {
         let btnToggle = document.querySelector(`.${e.target.classList[1]}`);
@@ -65,6 +57,9 @@ const getButtons = () => {
     }
   });
 };
+
+//Populate library with books.//
+
 const cardAdd = () => {
   let title = getTitle.value;
   let author = getAuthor.value;
@@ -77,7 +72,6 @@ const cardAdd = () => {
   myLibrary.push(aBook);
 
   //Create cards with books.//
-
   for (let i = myLibrary.length; i < myLibrary.length + 1; i++) {
     let createCard = document.createElement('div');
     library.appendChild(createCard).classList.add('card');
@@ -103,32 +97,8 @@ const cardAdd = () => {
         .classList.add(`book--not--read`);
     }
     number = i - 1;
-
-    console.log(number);
   }
-  // const btnTarget = document.querySelectorAll('button');
   getButtons();
-  // btnTarget.forEach(function (button) {
-  //   // console.log(button);
-  //   if (button.classList.contains('btn--card')) {
-  //     button.addEventListener('click', (e) => {
-  //       let btnToggle = document.querySelector(`.${e.target.classList[1]}`);
-
-  //       if (read) {
-  //         read = false;
-  //         btnToggle.classList.remove('book--read');
-  //         btnToggle.classList.add('book--not--read');
-  //         btnToggle.textContent = `I have not read this`;
-  //       } else {
-  //         read = true;
-  //         btnToggle.classList.remove('book--not--read');
-  //         btnToggle.classList.add('book--read');
-  //         btnToggle.textContent = `I have read this`;
-  //       }
-  //     });
-  //   }
-  // });
-
   modal.style.display = 'none';
 };
 
