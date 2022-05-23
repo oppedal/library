@@ -26,7 +26,7 @@ h1 {
   line-height: 1.1;
 }
 /* Button to add to library */
-.container div:nth-child(2) {
+.btn--to--add {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -74,7 +74,7 @@ h1 {
   margin-bottom: 1rem;
 }
 .btn--card {
-  background-color: red;
+  /* background-color: red; */
 }
 .card img {
   border-radius: 100px;

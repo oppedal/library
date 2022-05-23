@@ -33,15 +33,19 @@ function Book(title, author, pages, haveRead) {
 openModal.addEventListener('click', () => {
   modal.style.display = 'block';
 });
+function spliceArr(a, b) {
+  a = a - 1;
+  myLibrary.splice(a, b);
+}
 
 //Buttons on the cards.//
 const getButtons = () => {
   const btnTarget = document.querySelectorAll('button');
-  return btnTarget.forEach(function (button) {
+  btnTarget.forEach(function (button) {
     if (button.classList.contains('btn--card')) {
       button.addEventListener('click', (e) => {
         let btnToggle = document.querySelector(`.${e.target.classList[1]}`);
-        console.log(e.target);
+
         if (read) {
           read = false;
           btnToggle.classList.remove('book--read');
@@ -52,6 +56,21 @@ const getButtons = () => {
           btnToggle.classList.remove('book--not--read');
           btnToggle.classList.add('book--read');
           btnToggle.textContent = `I have read this`;
+        }
+      });
+    }
+    if (button.classList.contains('btn--remove')) {
+      button.addEventListener('click', (e) => {
+        let remove = e.target.classList[1];
+        remove = remove.slice(-1);
+        // let child = document.getElementById(`#card--${remove}`);
+        // library.removeChild(child);
+        // library.querySelector(`#card--${remove}`).style.display = 'none';
+        document.querySelector(`#card--${remove}`).remove();
+        if (myLibrary.length <= 1) {
+          myLibrary.splice(0);
+        } else {
+          spliceArr(remove, remove);
         }
       });
     }
@@ -84,9 +103,9 @@ const cardAdd = () => {
                               <button class='btn--card card--read--${i - 1}'>${
       read ? `I have read this` : `I have not read this`
     }</button>
-                              <button id='remove--${
+                              <button class='btn--remove remove--${
                                 i - 1
-                              }'>Remove book</button>`;
+                              }' >Remove book</button>`;
     if (read) {
       document
         .querySelector(`.card--read--${i - 1}`)
