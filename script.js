@@ -17,7 +17,7 @@ const elementImg = document.createElement(`img`);
 const library = document.querySelector('.library');
 const btnRead = document.querySelector(`.card--read--${number}`);
 //Random number for images.//
-let randomNumber = (maxLimit = 1000) => {
+let randomNumber = (maxLimit = 10) => {
   let rand = Math.random() * maxLimit;
   rand = Math.floor(rand);
   return rand;
@@ -34,23 +34,45 @@ openModal.addEventListener('click', () => {
   modal.style.display = 'block';
 });
 
-let createCard = document.createElement('div');
-let card = () => {
-  for (let i = 0; i < myLibrary.length; i++) {
-    let getCardById = document.getElementById(`card--${i}`);
-    getCardById.appendChild(elementH3).classList.add(`card--title--${i}`);
-  }
+// let createCard = document.createElement('div');
+// let card = () => {
+//   for (let i = 0; i < myLibrary.length; i++) {
+//     let getCardById = document.getElementById(`card--${i}`);
+//     getCardById.appendChild(elementH3).classList.add(`card--title--${i}`);
+//   }
+// };
+
+const getButtons = () => {
+  const btnTarget = document.querySelectorAll('button');
+  return btnTarget.forEach(function (button) {
+    // console.log(button);
+    if (button.classList.contains('btn--card')) {
+      button.addEventListener('click', (e) => {
+        let btnToggle = document.querySelector(`.${e.target.classList[1]}`);
+        console.log(e.target);
+        if (read) {
+          read = false;
+          btnToggle.classList.remove('book--read');
+          btnToggle.classList.add('book--not--read');
+          btnToggle.textContent = `I have not read this`;
+        } else {
+          read = true;
+          btnToggle.classList.remove('book--not--read');
+          btnToggle.classList.add('book--read');
+          btnToggle.textContent = `I have read this`;
+        }
+      });
+    }
+  });
 };
-let cardAdd = () => {
+const cardAdd = () => {
   let title = getTitle.value;
   let author = getAuthor.value;
   let pages = getPages.value;
   let read = readInput.value;
-
   if (read === `yes`) {
     read = true;
   } else read = false;
-
   let aBook = new Book(`${title}`, `${author}`, `${pages}`, `${read}`);
   myLibrary.push(aBook);
 
@@ -65,7 +87,7 @@ let cardAdd = () => {
       <h3>${myLibrary[i - 1].title}</h3>
                               <h4>Written by: ${myLibrary[i - 1].author}</h4>
                               <h4>There are ${myLibrary[i - 1].pages} pages</h4>
-                              <button class='card--read--${i - 1}'>${
+                              <button class='btn--card card--read--${i - 1}'>${
       read ? `I have read this` : `I have not read this`
     }</button>
                               <button id='remove--${
@@ -81,36 +103,33 @@ let cardAdd = () => {
         .classList.add(`book--not--read`);
     }
     number = i - 1;
+
     console.log(number);
   }
+  // const btnTarget = document.querySelectorAll('button');
+  getButtons();
+  // btnTarget.forEach(function (button) {
+  //   // console.log(button);
+  //   if (button.classList.contains('btn--card')) {
+  //     button.addEventListener('click', (e) => {
+  //       let btnToggle = document.querySelector(`.${e.target.classList[1]}`);
+
+  //       if (read) {
+  //         read = false;
+  //         btnToggle.classList.remove('book--read');
+  //         btnToggle.classList.add('book--not--read');
+  //         btnToggle.textContent = `I have not read this`;
+  //       } else {
+  //         read = true;
+  //         btnToggle.classList.remove('book--not--read');
+  //         btnToggle.classList.add('book--read');
+  //         btnToggle.textContent = `I have read this`;
+  //       }
+  //     });
+  //   }
+  // });
+
   modal.style.display = 'none';
-  document
-    .querySelector(`.card--read--${number}`)
-    .addEventListener('click', () => {
-      if (read) {
-        read = false;
-        document
-          .querySelector(`.card--read--${number}`)
-          .classList.remove(`book--read`);
-        document
-          .querySelector(`.card--read--${number}`)
-          .classList.add(`book--not--read`);
-        document.querySelector(
-          `.card--read--${number}`
-        ).textContent = `I have not read this`;
-      } else {
-        read = true;
-        document
-          .querySelector(`.card--read--${number}`)
-          .classList.remove(`book--not--read`);
-        document
-          .querySelector(`.card--read--${number}`)
-          .classList.add(`book--read`);
-        document.querySelector(
-          `.card--read--${number}`
-        ).textContent = `I have read this`;
-      }
-    });
 };
 
 const addNewBookBtn = document
