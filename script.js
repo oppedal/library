@@ -14,6 +14,12 @@ const elementH4_2 = document.createElement('h4');
 const elementButton = document.createElement('button');
 const elementImg = document.createElement(`img`);
 const library = document.querySelector('.library');
+//Random number for images.//
+let randomNumber = (maxLimit = 1000) => {
+  let rand = Math.random() * maxLimit;
+  rand = Math.floor(rand);
+  return rand;
+};
 
 function Book(title, author, pages, haveRead) {
   (this.title = title),
@@ -44,10 +50,10 @@ let cardAdd = () => {
 
   let aBook = new Book(`${title}`, `${author}`, `${pages}`, `${read}`);
   myLibrary.push(aBook);
-  // card();
+
+  //Create cards with books.//
+
   for (let i = myLibrary.length; i < myLibrary.length + 1; i++) {
-    // number = i - 1;
-    // console.log(number);
     let createCard = document.createElement('div');
     library.appendChild(createCard).classList.add('card');
     createCard.setAttribute(`id`, `card--${i - 1}`);
@@ -66,12 +72,6 @@ let cardAdd = () => {
                               }'>Remove book</button>`;
   }
   modal.style.display = 'none';
-};
-
-let randomNumber = (maxLimit = 1000) => {
-  let rand = Math.random() * maxLimit;
-  rand = Math.floor(rand);
-  return rand;
 };
 
 const addNewBookBtn = document
