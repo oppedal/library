@@ -21,6 +21,10 @@ header div {
 header h1 {
   margin-left: 1rem;
 }
+h1 {
+  font-size: clamp(1.913rem, calc(12px + 2.475vw), 2.587rem);
+  line-height: 1.1;
+}
 /* Button to add to library */
 .container div:nth-child(2) {
   display: flex;
@@ -35,18 +39,26 @@ header h1 {
   padding-right: 1rem;
   padding-left: 1rem;
   grid-row: 3;
-  display: grid;
+  /* display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(232px, 400px));
+
+  grid-template-columns: repeat(auto-fill, minmax(232px, 400px));
   grid-template-rows: repeat(auto-fill, minmax(460px, 500px));
-  place-content: center;
+  place-content: center; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .card {
+  flex: 1 1 232px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 464px;
   min-width: 232px;
+  max-width: 400px;
   padding: 1rem;
   border-radius: 15px;
   border: 1px solid rgba(207, 207, 207, 0.996);
@@ -72,9 +84,9 @@ footer {
 }
 
 .modal {
-  display: block;
+  display: none;
   background-color: grey;
-  height: 50vh;
+  height: fit-contentS;
   max-width: fit-content;
   position: fixed;
   z-index: 100;
