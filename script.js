@@ -9,13 +9,18 @@ const readInput = document.getElementById(`read`);
 const modal = document.querySelector('.modal');
 const openModal = document.querySelector('.open-modal');
 const modalContent = document.querySelector('.modal-content');
-const elementH3 = document.createElement('h3');
-const elementH4 = document.createElement('h4');
-const elementH4_2 = document.createElement('h4');
-const elementButton = document.createElement('button');
-const elementImg = document.createElement(`img`);
+
+//Gonna use these if I revisit to remove innerHTML when creating cards.//
+// const elementH3 = document.createElement('h3');
+// const elementH4 = document.createElement('h4');
+// const elementH4_2 = document.createElement('h4');
+// const elementButton = document.createElement('button');
+// const elementImg = document.createElement(`img`);
+
 const library = document.querySelector('.library');
 const btnRead = document.querySelector(`.card--read--${number}`);
+const modalBG = document.querySelector('.modal-wrapper');
+const closeModal = document.querySelector('.icon');
 //Random number for images.//
 let randomNumber = (maxLimit = 50) => {
   let rand = Math.random() * maxLimit;
@@ -32,13 +37,28 @@ function Book(title, author, pages, haveRead) {
 
 openModal.addEventListener('click', () => {
   modal.style.display = 'block';
+  modalBG.style.display = 'block';
 });
+
+//Remove books from arr.//
 function spliceArr(a, b) {
   a = a - 1;
   myLibrary.splice(a, b);
 }
 
 //Buttons on the cards.//
+
+const close = () => {
+  modal.style.display = 'none';
+  modalBG.style.display = 'none';
+  getTitle.value = '';
+  getPages.value = '';
+  getAuthor.value = '';
+  readInput.value = '';
+};
+closeModal.addEventListener('click', close);
+modalBG.addEventListener('click', close);
+
 const getButtons = () => {
   const btnTarget = document.querySelectorAll('button');
   btnTarget.forEach(function (button) {
@@ -118,7 +138,7 @@ const cardAdd = () => {
     number = i - 1;
   }
   getButtons();
-  modal.style.display = 'none';
+  close();
 };
 
 const addNewBookBtn = document
