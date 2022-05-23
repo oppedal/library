@@ -1,3 +1,26 @@
+@font-face {
+  font-family: Apfel;
+  src: url('ApfelGrotezk-Fett.woff');
+}
+:root {
+  --main: #202b37;
+  --white: #edf2f2;
+  --accent: #e0a0af;
+  --green: #3e5641;
+  --red: #bf1a2f;
+}
+body {
+  font-family: Apfel;
+  background-color: var(--main);
+  margin: 0;
+  box-sizing: border-box;
+}
+button {
+  cursor: pointer;
+  background-color: var(--main);
+  color: var(--white);
+  font-family: Apfel;
+}
 .container {
   display: grid;
   grid-template-columns: 1fr;
@@ -10,9 +33,7 @@ header {
   grid-row: 1;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: grey;
-  padding-bottom: 1rem;
-  position: static;
+  background-color: var(--white);
 }
 header div {
   display: flex;
@@ -60,10 +81,14 @@ h1 {
   min-width: 232px;
   max-width: 400px;
   padding: 1rem;
-
+  background-color: var(--white);
   border-radius: 15px;
-  border: 1px solid rgba(207, 207, 207, 0.996);
+
+  outline: 1px solid var(--main);
+
+  outline-offset: -7px;
 }
+
 .card h1 {
   margin: 0;
 }
@@ -72,10 +97,17 @@ h1 {
 }
 .card button {
   margin-bottom: 1rem;
+  width: 200px;
+  height: 30px;
+  border-radius: 15px;
+  border-style: none;
+  position: relative;
 }
-.btn--card {
-  /* background-color: red; */
+.card button:hover {
+  background-color: var(--accent);
+  color: var(--main);
 }
+
 .card img {
   border-radius: 100px;
   padding-top: 1rem;
@@ -86,13 +118,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
 }
 
 .modal {
   display: none;
   background-color: grey;
-  height: fit-contentS;
-  max-width: fit-content;
+  height: 50vw;
+  width: 50vw;
+  min-width: fit-content;
+  min-height: 250px;
+  max-height: 800px;
+  max-width: 800px;
   position: fixed;
   z-index: 100;
   top: 50%;
@@ -101,18 +138,37 @@ footer {
   border-radius: 1em;
   padding: 2rem;
 }
+.modal button {
+  margin-bottom: 1rem;
+}
 .modal-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   gap: 1.2rem;
-  padding-top: 1rem;
+  padding-top: 25%;
+}
+input {
+  width: 70%;
+}
+.open-modal {
+  height: 50px;
+  width: 200px;
+  background-color: var(--main);
+  color: var(--white);
+  font-size: 1.7rem;
+  font-family: Apfel;
+  border: none;
+  cursor: pointer;
+}
+.open-modal:hover {
+  color: var(--accent);
 }
 
 .book--read {
-  background-color: green;
+  background-color: var(--green);
 }
 .book--not--read {
-  background-color: red;
+  background-color: var(--red);
 }
